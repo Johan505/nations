@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class Region extends Model
 {
     //la tabla con la cual el modelo se relaciona
-    protected $table = "countries";
+    protected $table = "regions";
     //la clave primaria de la tabla
-    protected $primaryKey = "country_id";
+    protected $primaryKey = "region_id";
     //anular campos de auditoria
     public $timestamps = false;
     use HasFactory;
 
-    //relacion inversa M:1 paises y region
-    public function region(){
-        return $this->belongsTo(Region::class,'region_id');
+    //relacion entre region y paises 1:m
+
+    public function paises(){
+        return $this->hasMany(Country::class,'region_id');
     }
 }
